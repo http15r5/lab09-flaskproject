@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Кошик{% endblock %}
+                                                 <!-- корзина зробив (Діма Чаркін),  оформив (Мельник Станіслав)-->
+{% block content %}
+<script src="{{ url_for('static', filename='scripts.js') }}?v={{ time }}"></script>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Ваш кошик</h2>
+
+
+  {% if cart %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Назва</th>
+        <th>Кількість</th>
+        <th>Ціна</th>
+        <th>Сума</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart.values() %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }} $</td>
+        <td>{{ item.price * item.quantity }} $</td>
+        <td>
+          <form action="{{ url_for('shop.remove_from_cart', product_id=item.id) }}" method="POST">
+            <button type="submit" class="btn btn-danger btn-sm">🗑️</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p><strong>Разом:</strong> {{ total }} $</p>
+  {% if discount %}
+  <p class="text-success">
+    Знижка {{ discount }}% → <strong>Після знижки:</strong> {{ discounted_total }} $
+  </p>
+  {% endif %}
+
+  <form method="POST" action="{{ url_for('shop.apply_promo') }}" class="mt-3">
+    <label>Промокод:</label>
+    <input type="text" name="promo_code" class="form-control d-inline w-50" placeholder="Введіть промокод...">
+    <button type="submit" class="btn btn-primary mt-2">Застосувати</button>
+  </form>
+
+  <form action="{{ url_for('shop.checkout') }}" method="POST" class="mt-4">
+    <input type="email" name="email" placeholder="Email" required class="form-control mb-2">
+    <input type="text" name="address" placeholder="Адреса" required class="form-control mb-2">
+    <button type="submit" class="btn btn-success">Оформити замовлення</button>
+  </form>
+
+  {% else %}
+  <p class="text-center mt-4">Ваш кошик порожній</p>
+  {% endif %}
+</div>
+{% endblock %}

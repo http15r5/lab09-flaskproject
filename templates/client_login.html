@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+                                     <!--вхід зробив та оформив ( Стас Мельник)-->
+{% block content %}
+<script src="{{ url_for('static', filename='scripts.js') }}?v={{ time }}"></script>
+<div class="login-page">
+  <div class="login-card">
+    <h1 class="page-title">Вхід</h1>
+    <h2>Вхід до акаунту</h2>
+    <form method="post">
+      <div class="form-group">
+        <label for="email">Ел. пошта:</label>
+        <input type="email" id="email" name="email" placeholder="Введіть вашу пошту" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" placeholder="Введіть пароль" required>
+      </div>
+      <button type="submit">Увійти</button>
+    </form>
+    <p class="register-text">Немає акаунту? <a href="{{ url_for('client.register') }}">Реєстрація</a></p>
+  </div>
+</div>
+
+{% endblock %}

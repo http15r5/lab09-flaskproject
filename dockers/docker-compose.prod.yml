@@ -1,0 +1,45 @@
+services:
+  flask_app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: project-web:prod
+    container_name: flask_app_prod
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: production
+      DATABASE_PATH: /app/data/db.sqlite
+      LOG_PATH: /app/logs/app.log
+    volumes:
+      - sqlite_data:/app/data
+      - logs_data:/app/logs
+      - static_files:/app/static
+    restart: unless-stopped
+ 
+    healthcheck:
+      test: ["CMD", "curl", "-а", "http://localhost:5000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  backup:
+    image: alpine
+    container_name: sqlite_backup
+    depends_on:
+      - flask_app
+    volumes:
+      - sqlite_data:/data:ro
+      - ./backups:/backup
+    command: >
+      sh -c "
+      while true; do
+        cp /data/db.sqlite /backup/db_$(date +%Y-%m-%d_%H-%M-%S).sqlite;
+        sleep 3600;
+      done"
+    restart: unless-stopped
+
+volumes:
+  sqlite_data:
+  logs_data:
+  static_files:

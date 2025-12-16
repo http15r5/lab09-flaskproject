@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}W.Y.M Pink Shop{% endblock %}
+                                                     <!--головна зробив та оформив (Стас Мельник)-->
+{% block content %}
+<script src="{{ url_for('static', filename='scripts.js') }}?v={{ time }}"></script>
+<section class="text-center py-20 bg-gradient-to-r from-pink-200 via-pink-100 to-purple-200 animate-fade-in">
+  <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+    Вітаємо у <span class="text-pink-600">W.Y.M Pink Shop</span>
+  </h1>
+
+  <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto mb-10">
+    Наймиліший рожевий магазин автомобілів, де стиль зустрічає швидкість.
+    Тут навіть Mustang блищить рожевим глянцем
+  </p>
+
+  <a href="{{ url_for('shop.shop') }}"
+     class="bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-transform hover:-translate-y-1">
+     Перейти до магазину
+  </a>
+</section>
+
+<section class="py-16 bg-white">
+  <h2 class="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">
+    Чому саме ми?
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto text-center">
+    <div class="p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-xl transition bg-pink-50">
+      <div class="text-5xl mb-3">💎</div>
+      <h3 class="text-xl font-semibold mb-2 text-pink-600">Унікальні автомобілі</h3>
+      <p class="text-gray-700">Ми пропонуємо найрідкісніші рожеві моделі, яких ти не знайдеш більше ніде.</p>
+    </div>
+
+    <div class="p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-xl transition bg-pink-50">
+      <div class="text-5xl mb-3">🚀</div>
+      <h3 class="text-xl font-semibold mb-2 text-pink-600">Швидка доставка</h3>
+      <p class="text-gray-700">Отримай своє рожеве диво швидко й без клопоту — ми піклуємося про все!</p>
+    </div>
+
+    <div class="p-6 rounded-2xl shadow-md border border-pink-100 hover:shadow-xl transition bg-pink-50">
+      <div class="text-5xl mb-3">💖</div>
+      <h3 class="text-xl font-semibold mb-2 text-pink-600">Любов у кожній деталі</h3>
+      <p class="text-gray-700">Кожен автомобіль перевірений з турботою і любов’ю до наших клієнтів.</p>
+    </div>
+  </div>
+</section>
+
+<div class="text-center mt-12 mb-16">
+  <p class="text-lg text-gray-700 mb-3">Можете переглянути відгуки наших клієнтів </p>
+  <a href="{{ url_for('client.reviews') }}" class="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:opacity-90 transition">
+     Переглянути відгуки
+  </a>
+</div>
+
+<section class="py-20 bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100 text-center">
+  <h2 class="text-4xl font-bold mb-4 text-gray-800">
+    Готові знайти свою мрію на колесах?
+  </h2>
+  <a href="{{ url_for('shop.shop') }}"
+     class="bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-transform hover:-translate-y-1 mt-6 inline-block">
+     Почати покупки
+  </a>
+</section>
+{% endblock %}
