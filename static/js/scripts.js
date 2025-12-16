@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => box.remove(), 2500);
   }
 
-  /* ===================== MENU ===================== */
   (function initMenus(){
     const menus = [
       { btn: 'mainMenuButton', menu: 'mainMenu' },
@@ -40,8 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'))
     );
   })();
-
-  /* ===================== TOGGLES ===================== */
   function setupToggle(btnId, sectionId, iconId) {
     const btn = $(btnId), section = $(sectionId), icon = $(iconId);
     if (!btn || !section) return;
@@ -56,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupToggle('toggleOrders', 'sectionOrders', 'iconOrders');
   setupToggle('toggleFeedback', 'sectionFeedback', 'iconFeedback');
 
-  /* ===================== API ===================== */
   const API_BASE = '/api/v1';
 
   async function safeFetchJson(url, opts) {
@@ -131,12 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
     await fetch(`${API_BASE}/orders/${id}`, {method:'DELETE'});
     loadOrders();
   }
-
-  /* ======= ГЛОБАЛЬНІ (КРИТИЧНО ДЛЯ HTML) ======= */
   window.changeOrderStatus = changeOrderStatus;
   window.deleteOrder = deleteOrder;
 
-  /* ===================== INIT ===================== */
   if ($('products-list')) loadProducts();
   if ($('feedback-list')) loadFeedback();
   if ($('orders-list')) loadOrders();
