@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Панель клієнта{% endblock %}
 {% block content %}
-                               <!-- зробили, полагоди та оформили (Стас Мельник, Максим Пахольчук) -->
-<script src="{{ url_for('static', filename='scripts.js') }}?v={{ time }}"></script>
+                               
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 <div class="bg-white shadow-lg rounded-2xl p-8 mt-6 border border-pink-200 max-w-6xl mx-auto">
     <h1 class="text-3xl font-extrabold mb-6 text-pink-700 text-center">Панель клієнта</h1>
 
@@ -132,3 +133,4 @@
   </div>
 </div>
 {% endblock %}
+
