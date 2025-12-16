@@ -284,4 +284,11 @@ document.addEventListener('DOMContentLoaded', () => {
   window.closeDetailsModal = window.closeDetailsModal;
   window.closeCancelModal = window.closeCancelModal;
   window.closeDeleteModal = window.closeDeleteModal;
+  .dropdown-menu {
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
 });
