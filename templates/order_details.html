@@ -2,7 +2,8 @@
 {% block title %}Деталі замовлення{% endblock %}
 
 {% block content %}
-<script src="{{ url_for('static', filename='scripts.js') }}?v={{ time }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 <div class="bg-white shadow-md rounded-2xl p-8 max-w-6xl mx-auto mt-6 border border-pink-200">
   <h1 class="text-3xl font-bold mb-6 text-pink-700">Деталі замовлення #{{ order['id'] }}</h1>
 
