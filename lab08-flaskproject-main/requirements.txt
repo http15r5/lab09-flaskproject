@@ -1,6 +1,0 @@
-Flask
-flasgger
-flask_sqlalchemy
-werkzeug
-requests
-gunicorn
