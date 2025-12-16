@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: dockers/Dockerfile
+    image: project-web
+    container_name: flask_app
+    environment:
+      FLASK_ENV: production
+      DATABASE_PATH: /app/data/db.sqlite
+      LOG_PATH: /app/logs/app.log
+    volumes:
+      - sqlite_data:/app/data
+      - logs_data:/app/logs
+      - static_files:/app/static
+    expose:
+      - "5000"
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_proxy
+    depends_on:
+      - web
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - static_files:/app/static
+    restart: unless-stopped
+
+volumes:
+  sqlite_data:
+  logs_data:
+  static_files:

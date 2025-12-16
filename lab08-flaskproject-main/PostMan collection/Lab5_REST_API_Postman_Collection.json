@@ -1,0 +1,190 @@
+{
+  "info": {
+    "name": "Lab5 REST API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Laboratory Work 5 – RESTful API (Flask, SQLite)"
+  },
+  "item": [
+    {
+      "name": "Get all products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/products",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "products"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"customer_name\": \"Test User\",\n  \"product_id\": 1,\n  \"quantity\": 2\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/orders",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get all orders",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/orders",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get order by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/orders/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "orders",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update order",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"quantity\": 3\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/orders/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "orders",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete order",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/orders/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "orders",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create feedback",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"Tester\",\n  \"message\": \"Everything works \\u043e\\u0442\\u043b\\u0438\\u0447\\u043d\\u043e!\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/feedback",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "feedback"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get all feedback",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/feedback",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "feedback"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete feedback",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/feedback/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "feedback",
+            "1"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:5000/api/v1"
+    }
+  ]
+}

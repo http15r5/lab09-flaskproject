@@ -1,0 +1,21 @@
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: dockers/Dockerfile
+    container_name: flask_app_dev
+    environment:
+      FLASK_ENV: development
+      FLASK_APP: app.py
+    ports:
+      - "5000:5000"
+    volumes:
+      - ..:/app
+      - sqlite_data:/app/data
+      - logs_data:/app/logs
+    command: flask run --host=0.0.0.0 --port=5000 --reload
+    restart: unless-stopped
+
+volumes:
+  sqlite_data:
+  logs_data:
