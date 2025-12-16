@@ -3,7 +3,8 @@
 {% block title %}Lab 6 — API Integration{% endblock %}
 
 {% block content %}
-<script src="{{ url_for('static', filename='scripts.js') }}?v={{ time }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 <style>
     .header-pill {
         background: linear-gradient(135deg, #4f46e5, #7c3aed);
@@ -132,4 +133,5 @@
 
 
 {% endblock %}
+
 
