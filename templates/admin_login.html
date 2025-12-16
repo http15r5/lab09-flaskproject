@@ -1,6 +1,7 @@
 {% extends "base.html" %}
                                               <!--логін зробив(Діма Чавркін) ( оформив Стас Мельник)-->
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 <div class="admin-login-page">
   <div class="login-card">
@@ -20,4 +21,5 @@
   </div>
 </div>
 {% endblock %}
+
 
