@@ -81,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupToggle('toggleProducts', 'productsSection', 'iconProducts');
   setupToggle('toggleProducts', 'sectionProducts', 'toggleIcon');
 
--
   const API_BASE = '/api/v1';
   async function safeFetchJson(url, opts) {
     const res = await fetch(url, opts);
