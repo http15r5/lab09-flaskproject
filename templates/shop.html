@@ -58,13 +58,11 @@
         {% if session.get('is_client') %}
 <a href="{{ url_for('shop.add_to_cart', product_id=product.id) }}"
    class="absolute inset-0 flex items-center justify-center ...">
-</a>
-{% else %}
-<a href="{{ url_for('client.login') }}"
-   class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 text-white">
-   🔐 Увійти
-</a>
-{% endif %}
+<a
+            href="{{ url_for('shop.add_to_cart', product_id=product.id) }}"
+            class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 text-white opacity-0 group-hover:opacity-100 rounded-xl transition duration-300 font-medium text-lg"
+        >
+        </a>
     </div>
     {% else %}
     <div class="col-span-full text-center text-gray-500 italic text-lg">Нічого не знайдено</div>
