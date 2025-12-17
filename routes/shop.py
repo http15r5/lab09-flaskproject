@@ -80,7 +80,7 @@ def add_to_cart(product_id):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not session.get('is_client'):
-            flash("Спочатку увійдіть у акаунт 🔐", "warning")
+            flash("Увійдіть або зареєструйтесь, щоб додавати товари в кошик 🛒", "warning")
             return redirect(url_for('client.login', next=request.url))
         return f(*args, **kwargs)
     return decorated_function
