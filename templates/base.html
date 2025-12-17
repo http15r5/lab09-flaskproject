@@ -1,5 +1,8 @@
                                                     <!-- робили всі  -->
 <!DOCTYPE html>
+
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
 <html lang="uk" class="h-full">
 <head>
   <meta charset="UTF-8">
@@ -100,8 +103,6 @@
     </div>
   {% endif %}
 {% endwith %}
-
-<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
   <main class="flex-grow">
     {% block content %}{% endblock %}
