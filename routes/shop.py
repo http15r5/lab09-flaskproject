@@ -4,6 +4,7 @@ import json
 from flask import Blueprint, render_template
 from models import get_products
 import sqlite3
+from functools import wraps
 
 def get_db_connection():
     conn = sqlite3.connect("db.sqlite")
@@ -49,22 +50,40 @@ def shop():
                                                             # додавання товару
 @shop_bp.route('/add_to_cart/<int:product_id>')
 def add_to_cart(product_id):
+    if not session.get('is_client'):
+        flash("Увійдіть або зареєструйтесь, щоб додавати товари в кошик 🛒", "warning")
+        return redirect(url_for('client.login', next=request.url))
+
     products = get_products()
     product = next((p for p in products if p['id'] == product_id), None)
+
     if product:
         cart = session.get('cart', {})
-        if str(product_id) in cart:
-            cart[str(product_id)]['quantity'] += 1
+        pid = str(product_id)
+
+        if pid in cart:
+            cart[pid]['quantity'] += 1
         else:
-            cart[str(product_id)] = {
+            cart[pid] = {
                 'id': product_id,
                 'name': product['name'],
                 'price': product['price'],
                 'quantity': 1
             }
+
         session['cart'] = cart
         flash(f"Товар «{product['name']}» додано до кошика 🛒", "success")
+
     return redirect(url_for('shop.shop'))
+    
+    def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not session.get('is_client'):
+            flash("Спочатку увійдіть у акаунт 🔐", "warning")
+            return redirect(url_for('client.login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
 
                                                               # кошик
 @shop_bp.route('/cart')
