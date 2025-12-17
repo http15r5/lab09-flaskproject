@@ -49,6 +49,7 @@ def shop():
 
                                                             # додавання товару
 @shop_bp.route('/add_to_cart/<int:product_id>')
+@login_required
 def add_to_cart(product_id):
     if not session.get('is_client'):
         flash("Увійдіть або зареєструйтесь, щоб додавати товари в кошик 🛒", "warning")
@@ -80,7 +81,10 @@ def add_to_cart(product_id):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not session.get('is_client'):
-            flash("Увійдіть або зареєструйтесь, щоб додавати товари в кошик 🛒", "warning")
+            flash(
+                "Увійдіть або зареєструйтесь, щоб додавати товари в кошик 🛒",
+                "warning"
+            )
             return redirect(url_for('client.login', next=request.url))
         return f(*args, **kwargs)
     return decorated_function
